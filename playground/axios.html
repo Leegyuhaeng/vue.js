@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="getData">array</button>
+        <div>{{users}}</div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                users:[],
+                t:0
+              
+            },
+            methods:{
+                
+                getData:function(){
+                    let vm = this
+                   
+                    // this 를 위에 올리느냐 axios아래 this를 사용하냐에 따라 this 가 가르키는 형태가 다르다
+                    axios.get('https://jsonplaceholder.typicode.com/users/')
+                    .then(function(arr){
+                        console.log(arr.data)
+                        if(arr.data[vm.t]!=null){
+                            vm.users.push(arr.data[vm.t]) 
+                            vm.t++
+                        }
+                    })
+                    .catch(function(error){
+                        console.log(error)
+                      })
+                }
+            }
+        })
+    </script>
+</body>
+</html>

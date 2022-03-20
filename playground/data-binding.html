@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .text-blue{
+        color: blue;
+    }
+</style>
+<body>
+    <div id="app">
+        {{str}}
+        <p :id="vid" :class="name">{{num}}</p>
+        <p>{{dubbleNum}}</p>
+        <div v-if="loading">Loding...</div>
+        <div v-else>test user has been logged in</div>
+        <div v-show="loading">
+            loading...
+        </div>
+        <input type="text" v-model="text">
+        <p>{{text}}</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                str:'hi',
+                num:10,
+                vid:'abc',
+                name:'text-blue',
+                loading:true,
+                text:'',
+            },
+          
+            computed:{
+                dubbleNum:function(){
+                    return this.num *2
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>
